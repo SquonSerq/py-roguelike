@@ -37,6 +37,10 @@ class Entity_manager:
 			if self.__entities[id] in self.__tag_entities[tag]:
 				self.__tag_entities.get(tag).pop(self.__entities[id])
 
+	def get_entities_by_tag(self, tag):
+		if tag in self.__tag_entities:
+			return self.__tag_entities[tag]
+
 	@property
 	def entities(self):
 		return self.__entities.values()
