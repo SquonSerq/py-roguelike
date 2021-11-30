@@ -9,8 +9,16 @@ from ecs_systems.render import Render_system
 
 from bearlibterminal import terminal as blt
 
+from utils.level_reader import Lever_reader
+
 class Test_scene:
 	def on_instance(self, ctx, ctrls):
+		ctx.entity_manager.clear()
+		ctx.system_manager.clear()
+
+		reader = Lever_reader('./maps/map_test.json', ctx)
+		reader.process_map()
+
 		player = ctx.entity_manager.create_entity(tags=['player', 'collision', 'movable'])
 		player.add_component(Transform_component(1, 1))
 		player.add_component(Texture_component('@'))

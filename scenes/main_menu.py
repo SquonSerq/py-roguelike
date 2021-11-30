@@ -5,8 +5,10 @@ class Main_menu:
 		self.__scene_manager = scene_manager
 
 	def on_instance(self, ctx, ctrls):
-		ctx = ctx
 		self.cursor = 0
+		ctx.entity_manager.clear()
+		ctx.system_manager.clear()
+
 
 
 	def update(self, **kwargs):
@@ -24,6 +26,8 @@ class Main_menu:
 		if ctrls.get_input == blt.TK_ENTER:
 			if self.cursor == 0:
 				self.__scene_manager.set_scene('test_scene')
+			elif self.cursor == 1:
+				self.__scene_manager.set_scene('editor_main')
 
 		blt.put(4, 7+self.cursor, ">")
 

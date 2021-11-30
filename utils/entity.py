@@ -35,3 +35,7 @@ class Entity:
 	@property
 	def id(self):
 		return self.__id
+
+	@property
+	def all_components(self):
+		return self.__components.values()

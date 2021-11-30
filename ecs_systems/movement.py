@@ -11,8 +11,8 @@ class Movement_system:
 				tc = entity.get_component('transform_component')
 
 				if ((mc.x != 0 or mc.y !=0)
-				and tc.x + mc.x < 80 and tc.x + mc.x >= 0
-				and tc.y + mc.y < 25 and tc.y + mc.y >= 0):
+				and tc.x + mc.x < 50 and tc.x + mc.x >= 0
+				and tc.y + mc.y < 50 and tc.y + mc.y >= 0):
 
 					# check if there are any obstacles on the way
 					for obstacle in self.__context.entity_manager.get_entities_by_tag('collision'):

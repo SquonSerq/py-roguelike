@@ -9,3 +9,6 @@ class System_manager:
 	
 	def add_system(self, system):
 		self.__systems[system.name] = system
+
+	def clear(self):
+		self.__systems.clear()

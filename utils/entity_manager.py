@@ -11,6 +11,7 @@ class Entity_manager:
 	def create_entity(self, **kwargs):
 		self.__id_checker += 1
 		self.__entities[self.__id_checker] = Entity(self.__id_checker)
+		print('Created entity with id: %i'%(self.__id_checker))
 		
 		if 'tags' in kwargs:
 			for tag in kwargs['tags']:

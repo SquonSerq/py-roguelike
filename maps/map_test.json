@@ -1,0 +1,40 @@
+{
+	"1": {
+		"components": [
+			{
+				"transform_component": {
+					"x": 7,
+					"y": 7
+				}
+			},
+			{
+				"texture_component": {
+					"texture": "#"
+				}
+			},
+			{
+				"wall_component": {}
+			}
+		],
+		"tags": ["walls", "collision"]
+	},
+	"2": {
+		"components": [
+			{
+				"transform_component": {
+					"x": 8,
+					"y": 7
+				}
+			},
+			{
+				"texture_component": {
+					"texture": "#"
+				}
+			},
+			{
+				"wall_component": {}
+			}
+		],
+		"tags": ["walls", "collision"]
+	}
+}
