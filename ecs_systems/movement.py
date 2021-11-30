@@ -10,11 +10,13 @@ class Movement_system:
 				mc = entity.get_component('movement_component')
 				tc = entity.get_component('transform_component')
 
-				if mc.x != 0 or mc.y !=0:
+				if ((mc.x != 0 or mc.y !=0)
+				and tc.x + mc.x < 80 and tc.x + mc.x >= 0
+				and tc.y + mc.y < 25 and tc.y + mc.y >= 0):
 					tc.x += mc.x
 					tc.y += mc.y
 
-					mc.x = mc.y = 0
+				mc.x = mc.y = 0
 
 	@property
 	def name(self):
