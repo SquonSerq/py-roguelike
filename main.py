@@ -17,6 +17,8 @@ if __name__ == "__main__":
 	scene_manager.set_scene('test_scene')
 
 	while True:
+		blt.clear()
+
 		controls.check()
 
 		scene_manager.update()
