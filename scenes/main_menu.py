@@ -18,7 +18,7 @@ class Main_menu:
 			if self.cursor > 0:
 				self.cursor -= 1
 		elif ctrls.get_input == blt.TK_S:
-			if self.cursor < 8:
+			if self.cursor < 1:
 				self.cursor += 1
 
 		if ctrls.get_input == blt.TK_ENTER:

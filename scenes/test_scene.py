@@ -10,18 +10,18 @@ from bearlibterminal import terminal as blt
 
 class Test_scene:
 	def on_instance(self, ctx, ctrls):
-		player = ctx.entity_manager.createEntity()
-		player.addComponent(Transform_component(1, 1))
-		player.addComponent(Texture_component('@'))
-		player.addComponent(Movement_component())
-		player.addComponent(Player_control_component(up=blt.TK_W, down=blt.TK_S, left=blt.TK_A, right=blt.TK_D))
+		player = ctx.entity_manager.create_entity(tags=['player', 'collision', 'movable'])
+		player.add_component(Transform_component(1, 1))
+		player.add_component(Texture_component('@'))
+		player.add_component(Movement_component())
+		player.add_component(Player_control_component(up=blt.TK_W, down=blt.TK_S, left=blt.TK_A, right=blt.TK_D))
 
 		# test entity to check if game drops with empty entity
-		dropEnt = ctx.entity_manager.createEntity()
+		dropEnt = ctx.entity_manager.create_entity()
 
-		ctx.system_manager.addSystem(Player_control_system(ctx, ctrls))
-		ctx.system_manager.addSystem(Movement_system(ctx, ctrls))
-		ctx.system_manager.addSystem(Render_system(ctx, ctrls))
+		ctx.system_manager.add_system(Player_control_system(ctx, ctrls))
+		ctx.system_manager.add_system(Movement_system(ctx, ctrls))
+		ctx.system_manager.add_system(Render_system(ctx, ctrls))
 
 	def update(self, **kwargs):
 		ctx = kwargs["context"]

@@ -7,5 +7,5 @@ class System_manager:
 		for system in self.__systems.values():
 			system.update()
 	
-	def addSystem(self, system):
+	def add_system(self, system):
 		self.__systems[system.name] = system

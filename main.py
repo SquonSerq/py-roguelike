@@ -18,7 +18,7 @@ if __name__ == "__main__":
 	scene_manager.add_scene('test_scene', Test_scene())
 	scene_manager.add_scene('main_menu', Main_menu(scene_manager))
 
-	scene_manager.set_scene('main_menu')
+	scene_manager.set_scene('test_scene')
 
 	while True:
 		blt.clear()
