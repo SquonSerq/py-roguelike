@@ -17,7 +17,6 @@ class Test_scene:
 		self.__scene_manager = scene_manager
 		self.__config_reader = Config_reader()
 		self.__keybard_shortcuts = self.__config_reader.get_from_file('keyboard')
-		print(get_keycode(self.__keybard_shortcuts['move_up']))
 
 	def on_instance(self, ctx, ctrls):
 		ctx.entity_manager.clear()

@@ -20,10 +20,16 @@ class Render_system:
 
 		for entity in self.__context.entity_manager.entities:
 			if entity.contains('transform_component') and entity.contains('texture_component'):
+
+				if entity.contains('layer_component'):
+					blt.layer(entity.get_component('layer_component').layer)
+
 				transform = entity.get_component('transform_component')
 				texture = entity.get_component('texture_component')
 				blt.clear_area(transform.x, transform.y, 1, 1)
 				blt.put(transform.x, transform.y, texture.texture)
+
+				blt.layer(0)
 
 	@property
 	def name(self):
