@@ -13,14 +13,7 @@ class Entity_manager:
 		
 		if 'tags' in kwargs:
 			for tag in kwargs['tags']:
-				if tag in self.__tag_entities:
-					print('Added entity %i to tag %s'%(self.__id_checker, tag))
-					self.__tag_entities[tag].append(self.__entities[self.__id_checker])
-				else:
-					print('Created tag %s'%(tag))
-					print('Added entity %i to tag %s'%(self.__id_checker, tag))
-					self.__tag_entities[tag] = []
-					self.__tag_entities[tag].append(self.__entities[self.__id_checker])
+				self.add_entity_to_tag(self.__entities[self.__id_checker], tag)
 
 		return self.__entities[self.__id_checker]
 
@@ -29,17 +22,33 @@ class Entity_manager:
 			self.__entities.pop(id)
 
 	def clear(self):
+		self.__tag_entities.clear()
 		self.__entities.clear()
 		self.__id_checker = 0
 
-	def delete_entity_from_tag(self, id, tag):
-		if id in self.__entities and tag in self.__tag_entities:
-			if self.__entities[id] in self.__tag_entities[tag]:
-				self.__tag_entities.get(tag).pop(self.__entities[id])
+	def delete_entity_from_tag(self, entity, tag):
+		if tag in self.__tag_entities:
+			if entity in self.__tag_entities['tag']:
+				self.__tag_entities[tag].pop(entity)
 
 	def get_entities_by_tag(self, tag):
 		if tag in self.__tag_entities:
 			return self.__tag_entities[tag]
+
+	def add_entity_to_tag(self, entity, tag):
+		if tag in self.__tag_entities:
+			print('Added entity %i to tag %s'%(entity.id, tag))
+			self.__tag_entities[tag].append(entity)
+		else:
+			print('Created tag %s'%(tag))
+			print('Added entity %i to tag %s'%(entity.id, tag))
+			self.__tag_entities[tag] = []
+			self.__tag_entities[tag].append(entity)
+
+	def delete_tag(self, tag):
+		print("Deleted tag: %s"%(tag))
+		self.__tag_entities.pop(tag, None)
+
 
 	@property
 	def entities(self):
