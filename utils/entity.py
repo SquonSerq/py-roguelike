@@ -22,7 +22,11 @@ class Entity:
 
 	def delete_component(self, component_name):
 		if component_name in self.__components:
-			return self.__components.pop(component_name) 
+			self.__components.pop(component_name) 
+
+			if not self.__components:
+				print("Entity with id %i deletes itself because of no components in it"%(self.id))
+				del self
 
 	def disable_component(self, component_name):
 		if component_name in self.__components:
