@@ -8,10 +8,17 @@ from ecs_systems.player_control import Player_control_system
 from ecs_systems.render import Render_system
 
 from bearlibterminal import terminal as blt
+from utils.config_reader import Config_reader, get_keycode
 
 from utils.level_reader import Lever_reader
 
 class Test_scene:
+	def __init__(self, scene_manager):
+		self.__scene_manager = scene_manager
+		self.__config_reader = Config_reader()
+		self.__keybard_shortcuts = self.__config_reader.get_from_file('keyboard')
+		print(get_keycode(self.__keybard_shortcuts['move_up']))
+
 	def on_instance(self, ctx, ctrls):
 		ctx.entity_manager.clear()
 		ctx.system_manager.clear()
@@ -23,7 +30,7 @@ class Test_scene:
 		player.add_component(Transform_component(1, 1))
 		player.add_component(Texture_component('@'))
 		player.add_component(Movement_component())
-		player.add_component(Player_control_component(up=blt.TK_W, down=blt.TK_S, left=blt.TK_A, right=blt.TK_D))
+		player.add_component(Player_control_component(up=get_keycode(self.__keybard_shortcuts['move_up']), down=get_keycode(self.__keybard_shortcuts['move_down']), left=get_keycode(self.__keybard_shortcuts['move_left']), right=get_keycode(self.__keybard_shortcuts['move_right'])))
 
 		wall = ctx.entity_manager.create_entity(tags=['walls', 'collision'])
 		wall.add_component(Transform_component(5, 5))
@@ -40,4 +47,8 @@ class Test_scene:
 	def update(self, **kwargs):
 		ctx = kwargs["context"]
 		ctrls = kwargs["controls"]
+
+		if ctrls.get_input == blt.TK_ESCAPE:
+			self.__scene_manager.set_scene('main_menu')
+
 		ctx.system_manager.update()

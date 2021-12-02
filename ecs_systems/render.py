@@ -1,11 +1,17 @@
 from bearlibterminal import terminal as blt
 
+from utils.blt_configurator import Blt_configurator
+
 class Render_system:
 	def __init__(self, ctx, ctrls):
 		self.__context = ctx
 		self.__controls = ctrls
 		self.__name = 'render_system'
-		blt.set("window.size=50x50; window.cellsize=15x15")
+		self.__blt_configurator = Blt_configurator()
+
+		self.__blt_configurator.set_window_size(50, 50)
+		self.__blt_configurator.set_cellsize(width=15, height=15)
+		
 
 	def update(self):
 		for i in range(0, 50):

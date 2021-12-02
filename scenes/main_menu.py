@@ -1,5 +1,7 @@
 from bearlibterminal import terminal as blt
 
+from utils.blt_configurator import Blt_configurator
+
 class Main_menu:
 	def __init__(self, scene_manager):
 		self.__scene_manager = scene_manager
@@ -8,6 +10,10 @@ class Main_menu:
 		self.cursor = 0
 		ctx.entity_manager.clear()
 		ctx.system_manager.clear()
+
+		blt_configurator = Blt_configurator()
+		blt_configurator.set_window_size(80, 25)
+		blt_configurator.set_cellsize(auto="auto")
 
 
 
