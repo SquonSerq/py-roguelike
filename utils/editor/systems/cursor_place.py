@@ -10,6 +10,7 @@ class Cursor_place:
 		self.__scene_manager = scene_manager
 		self.__name = 'cursor_place'
 
+	# TODO: refactor using components (???)
 	def update(self):
 		if self.__controls.get_input == blt.TK_P:
 			entityExistsAtPoint = False

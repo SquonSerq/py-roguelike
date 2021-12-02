@@ -1,4 +1,5 @@
 from bearlibterminal import terminal as blt
+from components.layer_component import Layer_component
 from components.movement_component import Movement_component
 from components.player_control_component import Player_control_component
 from components.texture_component import Texture_component
@@ -25,7 +26,9 @@ class Editor_scene:
 			cursor.add_component(Movement_component())
 			cursor.add_component(Player_control_component(up=get_keycode(self.__keybard_shortcuts['move_up']), down=get_keycode(self.__keybard_shortcuts['move_down']), left=get_keycode(self.__keybard_shortcuts['move_left']), right=get_keycode(self.__keybard_shortcuts['move_right'])))
 			cursor.add_component(Cursor_component())
+			cursor.add_component(Layer_component(1))
 
+		ctx.entity_manager.delete_tag('edit_entity')
 
 		ctx.system_manager.add_system(Cursor_place(ctx, ctrls, self.__scene_manager))
 		ctx.system_manager.add_system(Player_control_system(ctx, ctrls))
@@ -37,6 +40,17 @@ class Editor_scene:
 		ctrls = kwargs["controls"]
 
 		if ctrls.get_input == blt.TK_ENTER:
-			self.__scene_manager.set_scene('edit_entity')
+			for cursor in ctx.entity_manager.get_entities_by_tag('cursor'):
+				ct = cursor.get_component('transform_component')
+				for entity in ctx.entity_manager.entities:
+					et = entity.get_component('transform_component')
+
+					if cursor.id == entity.id:
+						continue
+
+					if ct.x == et.x and ct.y == ct.y:
+						ctx.entity_manager.add_entity_to_tag(entity, 'edit_entity')
+						self.__scene_manager.set_scene('edit_entity')
+						break
 
 		ctx.system_manager.update()
