@@ -1,4 +1,4 @@
-from utils.entity import Entity
+from ecs.entity import Entity
 
 class Entity_manager:
 	def __init__(self):

@@ -2,17 +2,15 @@ from bearlibterminal import terminal as blt
 from controls import Controls
 from utils.blt_configurator import Blt_configurator
 from utils.config_reader import Config_reader
-from utils.context import Context
+from ecs.context import Context
 from utils.scene_init import scene_init
-from utils.scene_manager import Scene_manager
+from ecs.scene_manager import Scene_manager
 
 if __name__ == "__main__":
 	blt.open()
 	blt.refresh()
 	
-	blt_configurator = Blt_configurator()
-
-	blt_configurator.set("window.title='py-roguelike'; window.cellsize=auto; window.fullscreen=false")
+	Blt_configurator().set("window.title='py-roguelike'; window.cellsize=auto; window.fullscreen=false")
 
 	controls = Controls()
 	ctx = Context()

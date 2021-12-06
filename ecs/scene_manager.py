@@ -1,5 +1,3 @@
-
-
 class Scene_manager:
 	def __init__(self, ctx, ctrls):
 		self.__current_scene = ""

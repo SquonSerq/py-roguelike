@@ -1,5 +1,7 @@
-from utils.entity_manager import Entity_manager
-from utils.system_manager import System_manager
+
+from ecs.entity_manager import Entity_manager
+from ecs.system_manager import System_manager
+
 
 class Context:
 	def __init__(self):

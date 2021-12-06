@@ -1,4 +1,3 @@
-
 class System_manager:
 	def __init__(self):
 		self.__systems = {}
